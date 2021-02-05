@@ -1,0 +1,31 @@
+name: "{{SERVICE}}-CI/CD"
+
+on:
+  push:
+    paths:
+      - "packages/{{SERVICE}}/**"
+      - ".github/workflows/{{SERVICE}}.yaml"
+
+jobs:
+  build:
+    name: Build (Lint / Test / Codecov)
+    runs-on: ubuntu-latest
+    needs: bump-version
+    defaults:
+      run:
+        working-directory: ./packages/{{SERVICE}}
+    env: 
+      NODE_ENV: test
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@master
+
+      - name: Install 🔧
+        run: npm install
+      
+      - name: Lint 🧐
+        run: npm run lint
+
+      - name: Test 🚨
+        run: npm test

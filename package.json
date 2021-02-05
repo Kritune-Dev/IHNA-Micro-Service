@@ -1,0 +1,14 @@
+{
+  "name": "ihna-micro-service",
+  "description": "TypeScript monorepo for all micro-service",
+  "private": true,
+  "scripts": {
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "pub": "lerna publish",
+    "start": "lerna run start"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
