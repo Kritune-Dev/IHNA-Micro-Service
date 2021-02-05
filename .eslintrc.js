@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -14,4 +12,7 @@ module.exports = {
     'prettier/@typescript-eslint',
     'prettier',
   ],
-};
+  rules: {
+    semi: ['error', 'never'],
+  },
+}
