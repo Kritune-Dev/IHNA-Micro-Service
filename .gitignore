@@ -1,5 +1,11 @@
+# Editors
+.vscode
+
+# Package directories
+lerna-debug.log
 node_modules
+jspm_packages
+
+# Builded
 dist
-results
-.nyc_output
-*.tsbuildinfo
+tsconfig.tsbuildinfo
