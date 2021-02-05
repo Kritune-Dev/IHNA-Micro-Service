@@ -1,4 +1,9 @@
 {
+  "command": {
+    "version": {
+      "message": ":bookmark: Change version"
+    }
+  },
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent"
