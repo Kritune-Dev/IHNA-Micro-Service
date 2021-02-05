@@ -5,5 +5,11 @@
   "main": "src/app.ts",
   "repository": "https://github.com/Kritune-Dev/IHNA-Micro-Service",
   "author": "kritune <kritune.ashune@gmail.com>",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/app.js",
+    "start:dev": "nodemon",
+    "dev": "ts-node ./src/app.ts"
+  },
   "license": "MIT"
 }
