@@ -10,7 +10,6 @@ jobs:
   build:
     name: Build (Lint / Test)
     runs-on: ubuntu-latest
-    needs: bump-version
     defaults:
       run:
         working-directory: ./packages/calendar-service
