@@ -1,6 +1,9 @@
 {
   "name": "ihna-micro-service",
   "description": "TypeScript monorepo for all micro-service",
+  "workspaces": [
+    "packages/*"
+  ],
   "private": true,
   "scripts": {
     "clean": "lerna run clean",
