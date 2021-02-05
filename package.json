@@ -12,6 +12,15 @@
     "start": "lerna run start"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
     "lerna": "^3.22.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
+  "dependencies": {
+    "git-cz": "^4.7.6"
   }
 }
