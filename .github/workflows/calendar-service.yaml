@@ -1,10 +1,10 @@
-name: "calendar-service-CI/CD"
+name: 'calendar-service-CI/CD'
 
 on:
   push:
     paths:
-      - "packages/calendar-service/**"
-      - ".github/workflows/calendar-service.yaml"
+      - 'packages/calendar-service/**'
+      - '.github/workflows/calendar-service.yaml'
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
     defaults:
       run:
         working-directory: ./packages/calendar-service
-    env: 
+    env:
       NODE_ENV: test
 
     steps:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Install 🔧
         run: npm install
-      
+
       - name: Lint 🧐
         run: npm run lint
 

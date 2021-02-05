@@ -1,10 +1,10 @@
-name: "{{SERVICE}}-CI/CD"
+name: '{{SERVICE}}-CI/CD'
 
 on:
   push:
     paths:
-      - "packages/{{SERVICE}}/**"
-      - ".github/workflows/{{SERVICE}}.yaml"
+      - 'packages/{{SERVICE}}/**'
+      - '.github/workflows/{{SERVICE}}.yaml'
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
     defaults:
       run:
         working-directory: ./packages/{{SERVICE}}
-    env: 
+    env:
       NODE_ENV: test
 
     steps:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Install 🔧
         run: npm install
-      
+
       - name: Lint 🧐
         run: npm run lint
 
