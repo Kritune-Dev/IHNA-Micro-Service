@@ -3,6 +3,7 @@ WORKFLOW_TEMPLATE=$(cat ../.github/workflow-template.yaml)
 
 # iterate each route in routes directory
 for SERVICE in $(ls ../packages); do
+
 	SERVICE_GOOD=$(echo ${SERVICE} | tr -d '/')
 	echo "generating workflow for services/${SERVICE_GOOD}"
 
