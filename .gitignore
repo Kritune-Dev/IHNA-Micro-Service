@@ -20,7 +20,7 @@ tsconfig.tsbuildinfo
 logs
 *.log
 npm-debug.log*
-/coverage
+coverage
 
 # token and cred Google
 packages/calendar-service/src/constants/credentials.json
