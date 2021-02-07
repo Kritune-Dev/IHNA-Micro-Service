@@ -36,7 +36,7 @@ Lerna + Docker + Typescript + EsLint + Prettier
 
 The project has 1 package (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
 
-- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages//calendar-service) (http server)
+- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages//calendar-service) ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/calendar-service-CI/CD/badge.svg)
 
 _Note: Each package has its own eslint, tsconfig, preitter config._
 
