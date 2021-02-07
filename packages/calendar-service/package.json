@@ -1,6 +1,6 @@
 {
   "name": "calendar-service",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Allows you to search the calendar by day/week or even make specific searches in the calendar (particular courses, teachers etc...).",
   "main": "src/index.js",
   "license": "MIT",

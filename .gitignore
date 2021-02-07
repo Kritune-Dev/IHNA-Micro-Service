@@ -13,8 +13,6 @@ yarn-error.log
 dist
 tsconfig.tsbuildinfo
 
-package-lock.json
-
 # Environment variables
 .env
 
@@ -25,8 +23,8 @@ npm-debug.log*
 /coverage
 
 # token and cred Google
-src/config/credentials.json
-src/config/token.json
+packages/calendar-service/src/constants/credentials.json
+packages/calendar-service/src/constants/token.json
 
 # Dependency directories
 node_modules
@@ -51,5 +49,4 @@ pkg
 .gz
 .tgz
 yarn.lock
-packages/calendar-service/src/constants/credentials.json
-packages/calendar-service/src/constants/token.json
+
