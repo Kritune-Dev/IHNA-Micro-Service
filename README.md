@@ -1,4 +1,4 @@
-<h1 align="center">Microservice Nodejs Template</h1>
+<h1 align="center">Microservice IHNA</h1>
 <p align="center">
   <a href="https://github.com/prettier/prettier">
     <img
@@ -18,7 +18,7 @@
 </p>
 
 <h4 align="center">
-Lerna + Docker + Typescript + EsLint + Prettier
+Lerna + Docker + EsLint + Prettier
 </h4>
 
 # Table of Contents
@@ -32,18 +32,17 @@ Lerna + Docker + Typescript + EsLint + Prettier
 
 ## Introduction
 
-> My project is setup witj monorepo by Typescript + Docker + Lerna + Eslinter + Prettier.
+> My project is setup with monorepo by JavaScript + Docker + Lerna + Eslinter + Prettier.
 
 The project has 1 package (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
 
-- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages//calendar-service) ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/calendar-service-CI/CD/badge.svg)
+- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages//calendar-service)  -  ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/calendar-service-CI/CD/badge.svg)
 
 _Note: Each package has its own eslint, tsconfig, preitter config._
 
 ## Techstack
 
 - [Lerna](https://github.com/lerna/lerna) - A tool for managing JavaScript projects with multiple packages
-- [TsED](https://tsed.io/) - A TypeScript Framework on top of Express
 - Docker
 - Eslint + Prettier
 
