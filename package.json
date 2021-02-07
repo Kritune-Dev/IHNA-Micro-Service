@@ -9,19 +9,6 @@
     "format": "lerna run prettier && lerna run lint",
     "test": "lerna run test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "lerna run prettier",
-      "lerna run lint",
-      "lerna run test",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "lerna": "^3.22.1"
   }
