@@ -1,4 +1,3 @@
 module.exports = {
-  logs: 'dev',
-  secretToken: 'opale'
+  logs: 'dev'
 }

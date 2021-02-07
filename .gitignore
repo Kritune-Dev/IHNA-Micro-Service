@@ -51,3 +51,5 @@ pkg
 .gz
 .tgz
 yarn.lock
+packages/calendar-service/src/constants/credentials.json
+packages/calendar-service/src/constants/token.json

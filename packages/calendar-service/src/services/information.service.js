@@ -1,4 +1,4 @@
-const packageInformation = require('../../../package.json')
+const packageInformation = require('../../package.json')
 
 exports.packageParseInformation = (req) => {
   const uptime = getUptime()

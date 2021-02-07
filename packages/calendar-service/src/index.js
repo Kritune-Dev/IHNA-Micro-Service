@@ -1,7 +1,7 @@
 const { port, env } = require('./constants')
-const app = require('./config/express.config')
-const logger = require('./api/utils/logger')(__filename)
-const googleAuth = require('./api/services/googleAuth.service')
+const app = require('./server')
+const logger = require('./utils/logger')(__filename)
+const googleAuth = require('./services/googleAuth.service')
 
 logger.info('--- Calendar Service ---')
 logger.info('Connecting to Google Api...')

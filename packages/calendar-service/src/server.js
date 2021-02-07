@@ -4,22 +4,19 @@ const helmet = require('helmet')
 const morgan = require('morgan')
 const tmp = require('tmp')
 
-const { logs } = require('../constants')
+const { logs } = require('./constants')
 
-const session = require('./session.config')
-const cors = require('./cors.config')
-const clientLogs = require('./client-log.config')
+const cors = require('./config/cors.config')
+const clientLogs = require('./config/client-log.config')
 
-const routes = require('../api/routes/v1')
-const error = require('../api/middlewares/error')
+const routes = require('./routes/v1')
+const error = require('./middlewares/error')
 
 /**
  * Express instance
  * @public
  */
 const app = express()
-
-// TODO: Include CSRF middlewares here
 
 // request logging. dev: console | production: file
 app.use(morgan(logs))
@@ -43,13 +40,6 @@ app.use(compress())
 
 // secure apps by setting various HTTP headers
 app.use(helmet())
-
-/**
- * App Configurations
- */
-
-// session configuration
-app.use(session())
 
 // mount api v1 routes
 app.use('/api/v1/calendar', routes)

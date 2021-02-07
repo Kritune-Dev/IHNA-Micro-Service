@@ -1,7 +1,7 @@
 const httpStatus = require('http-status')
 const cors = require('cors')
 
-const APIError = require('../api/utils/APIError')
+const APIError = require('../utils/APIError')
 
 const options = {
   origin: (origin, callback) => {

@@ -7,7 +7,7 @@ let auth
 
 exports.connect = () => {
   const googleSecrets = JSON.parse(
-    fs.readFileSync(path.resolve('./src/config/credentials.json'))
+    fs.readFileSync(path.resolve('./src/constants/credentials.json'))
   ).installed
   auth = new googleAuth.OAuth2Client(
     googleSecrets.client_id,
@@ -15,7 +15,7 @@ exports.connect = () => {
     googleSecrets.redirect_uris[0]
   )
 
-  const token = fs.readFileSync(path.resolve('./src/config/token.json'))
+  const token = fs.readFileSync(path.resolve('./src/constants/token.json'))
   auth.setCredentials(JSON.parse(token))
 
   return 'Authentification GoogleAPI done'
