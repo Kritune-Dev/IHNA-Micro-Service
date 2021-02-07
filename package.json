@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "format": "lerna run prettier && lerna run lint:fix",
+    "prettier": "lerna run prettier",
     "check": "lerna run lint",
     "test": "lerna run test"
   },
@@ -16,10 +17,9 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts}": [
-      "lerna run prettier",
-      "lerna run lint",
-      "git add"
+    "*.{js}": [
+      "yarn prettier",
+      "yarn check"
     ]
   },
   "devDependencies": {
