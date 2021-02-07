@@ -1,4 +1,4 @@
-<h1 align="center">Microservice Nodejs Template</h1>
+<h1 align="center">IHNA - Microservices</h1>
 <p align="center">
   <a href="https://github.com/prettier/prettier">
     <img
@@ -34,9 +34,10 @@ Lerna + Docker + Typescript + EsLint + Prettier
 
 > My project is setup witj monorepo by Typescript + Docker + Lerna + Eslinter + Prettier.
 
-The project has 1 package (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
+The project has 2 packages (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
 
-- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages//calendar-service) (http server)
+- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages/calendar-service)
+- [Messenger-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages/messenger-service)
 
 _Note: Each package has its own eslint, tsconfig, preitter config._
 
