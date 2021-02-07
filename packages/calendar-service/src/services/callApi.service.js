@@ -3,171 +3,169 @@ const googleAuth = require('./googleAuth.service')
 const APIError = require('../utils/APIError')
 const logger = require('../utils/logger')(__filename)
 
-class CallApiService {
-  static notAuthenticated () {
-    return { message: 'NOT_AUTHENTICATED' }
-  }
+exports.notAuthenticated = () => {
+  return { message: 'NOT_AUTHENTICATED' }
+}
 
-  static getAllCourse (calendarId) {
-    const calendar = googleAuth.getCalendar()
-    const dateMin = startDate()
+exports.getAllCourse = (calendarId) => {
+  const calendar = googleAuth.getCalendar()
+  const dateMin = startDate()
 
-    return new Promise((resolve, reject) => {
-      calendar.events.list(
-        {
-          calendarId: calendarId,
-          timeMin: dateMin.toISOString(),
-          singleEvents: true,
-          maxResults: 1000,
-          orderBy: 'startTime'
-        },
-        async (err, res) => {
-          if (err) {
-            reject(
-              new Error(
-                'An error occured fetching all course in calendar ' +
-                  calendarId +
-                  ', err:' +
-                  err
-              )
+  return new Promise((resolve, reject) => {
+    calendar.events.list(
+      {
+        calendarId: calendarId,
+        timeMin: dateMin.toISOString(),
+        singleEvents: true,
+        maxResults: 1000,
+        orderBy: 'startTime'
+      },
+      async (err, res) => {
+        if (err) {
+          reject(
+            new Error(
+              'An error occured fetching all course in calendar ' +
+              calendarId +
+              ', err:' +
+              err
             )
-          }
-          const events = res.data.items
-          const all = new Array(0)
-          await events.map(async (event, i) => {
-            all.push(await getEventCourse(event))
-          })
-          resolve({ all })
+          )
         }
-      )
-    })
+        const events = res.data.items
+        const all = new Array(0)
+        await events.map(async (event, i) => {
+          all.push(await getEventCourse(event))
+        })
+        resolve({ all })
+      }
+    )
+  })
+}
+
+exports.getWeekCourses = (calendarId, nextWeek) => {
+  const calendar = googleAuth.getCalendar()
+  const dateMin = startDate()
+  const dateMax = startDate()
+
+  if (nextWeek > 0) {
+    dateMin.setDate(dateMin.getDate() + nextWeek * 7 - dateMax.getDay())
+    dateMax.setDate(dateMax.getDate() + nextWeek * 7 - dateMax.getDay() + 5)
+  } else {
+    const dayToAdd = 6 - dateMax.getDay()
+    dateMax.setDate(dateMax.getDate() + dayToAdd)
   }
 
-  static getWeekCourses (calendarId, nextWeek) {
-    const calendar = googleAuth.getCalendar()
-    const dateMin = startDate()
-    const dateMax = startDate()
-
-    if (nextWeek > 0) {
-      dateMin.setDate(dateMin.getDate() + nextWeek * 7 - dateMax.getDay())
-      dateMax.setDate(dateMax.getDate() + nextWeek * 7 - dateMax.getDay() + 5)
-    } else {
-      const dayToAdd = 6 - dateMax.getDay()
-      dateMax.setDate(dateMax.getDate() + dayToAdd)
-    }
-
-    return new Promise((resolve, reject) => {
-      calendar.events.list(
-        {
-          calendarId: calendarId,
-          timeMin: dateMin.toISOString(),
-          timeMax: dateMax.toISOString(),
-          singleEvents: true,
-          maxResults: 1000,
-          orderBy: 'startTime'
-        },
-        async (err, res) => {
-          if (err) {
-            reject(
-              new Error(
-                'An error occured fetching all course of the week in calendar ' +
-                  calendarId +
-                  ', err:' +
-                  err
-              )
+  return new Promise((resolve, reject) => {
+    calendar.events.list(
+      {
+        calendarId: calendarId,
+        timeMin: dateMin.toISOString(),
+        timeMax: dateMax.toISOString(),
+        singleEvents: true,
+        maxResults: 1000,
+        orderBy: 'startTime'
+      },
+      async (err, res) => {
+        if (err) {
+          reject(
+            new Error(
+              'An error occured fetching all course of the week in calendar ' +
+              calendarId +
+              ', err:' +
+              err
             )
-          }
-          const events = res.data.items
-          if (events.length < 1) {
-            const ret =
-              'No data for ' +
-              dateMin.toISOString() +
-              ' to ' +
-              dateMax.toISOString()
-            resolve({ day: ret })
-          }
-
-          const week = new Array(0)
-          await events.map(async (event, i) => {
-            week.push(await getEventCourse(event))
-          })
-          resolve({ week: week })
+          )
         }
-      )
-    })
+        const events = res.data.items
+        if (events.length < 1) {
+          const ret =
+            'No data for ' +
+            dateMin.toISOString() +
+            ' to ' +
+            dateMax.toISOString()
+          resolve({ day: ret })
+        }
+
+        const week = new Array(0)
+        await events.map(async (event, i) => {
+          week.push(await getEventCourse(event))
+        })
+        resolve({ week: week })
+      }
+    )
+  })
+}
+
+exports.getDayCourses = (calendarId, nextDay) => {
+  const calendar = googleAuth.getCalendar()
+  const dateMin = startDate()
+  const dateMax = startDate()
+
+  if (nextDay > 0) {
+    const date = dateMin.getDate()
+    dateMin.setDate(date + nextDay)
+    dateMax.setDate(date + nextDay + 1)
+  } else {
+    dateMax.setDate(dateMax.getDate() + 1)
   }
 
-  static getDayCourses (calendarId, nextDay) {
-    const calendar = googleAuth.getCalendar()
-    const dateMin = startDate()
-    const dateMax = startDate()
-
-    if (nextDay > 0) {
-      const date = dateMin.getDate()
-      dateMin.setDate(date + nextDay)
-      dateMax.setDate(date + nextDay + 1)
-    } else {
-      dateMax.setDate(dateMax.getDate() + 1)
-    }
-
-    return new Promise((resolve, reject) => {
-      calendar.events.list(
-        {
-          calendarId: calendarId,
-          timeMin: dateMin.toISOString(),
-          timeMax: dateMax.toISOString(),
-          singleEvents: true,
-          maxResults: 1000,
-          orderBy: 'startTime'
-        },
-        async (err, res) => {
-          if (err) {
-            reject(
-              new Error(
-                'An error occured fetching all course of the day in calendar ' +
-                  calendarId +
-                  ', err:' +
-                  err
-              )
+  return new Promise((resolve, reject) => {
+    calendar.events.list(
+      {
+        calendarId: calendarId,
+        timeMin: dateMin.toISOString(),
+        timeMax: dateMax.toISOString(),
+        singleEvents: true,
+        maxResults: 1000,
+        orderBy: 'startTime'
+      },
+      async (err, res) => {
+        if (err) {
+          reject(
+            new Error(
+              'An error occured fetching all course of the day in calendar ' +
+              calendarId +
+              ', err:' +
+              err
             )
-          }
-          const events = res.data.items
-          if (events.length < 1) {
-            const ret = 'No data for ' + dateMin.toISOString()
-            resolve({ day: ret })
-          }
-          const day = new Array(0)
-          await events.map(async (event, i) => {
-            day.push(await getEventCourse(event))
-          })
-          resolve({ day })
+          )
         }
-      )
-    })
-  }
+        const events = res.data.items
+        if (events.length < 1) {
+          const ret = 'No data for ' + dateMin.toISOString()
+          resolve({ day: ret })
+        }
+        const day = new Array(0)
+        await events.map(async (event, i) => {
+          day.push(await getEventCourse(event))
+        })
+        resolve({ day })
+      }
+    )
+  })
+}
 
-  static getCoursById (calendarId, idCours) {
-    const calendar = googleAuth.getCalendar()
-    return new Promise((resolve, reject) => {
-      calendar.events.get(
-        {
-          calendarId: calendarId,
-          eventId: idCours
-        },
-        async (err, res) => {
-          if (err) {
-            const message = `An error occured fetching course (${idCours}) in calendar ${calendarId}`
-            const error = new APIError(err)
-            error.message = message
-            error.status = err.code
-            reject(error)
-          } else {
-            resolve(await getEventCourse(res.data))
-          }
+exports.getCoursById = (calendarId, idCours) => {
+  const calendar = googleAuth.getCalendar()
+  return new Promise((resolve, reject) => {
+    calendar.events.get(
+      {
+        calendarId: calendarId,
+        eventId: idCours
+      },
+      async (err, res) => {
+        if (err) {
+          const message = `An error occured fetching course (${idCours}) in calendar ${calendarId}`
+          const error = new APIError(err)
+          error.message = message
+          error.status = err.code
+          reject(error)
+        } else {
+          resolve(await getEventCourse(res.data))
         }
-      )
-    })
-  }
+      }
+    )
+  })
 }
 
 function startDate () {
@@ -214,13 +212,12 @@ function getEventCourse (event) {
         60
       const minutes = minutesTotal % 60
       const hours = (minutesTotal - minutes) / 60
-      const duree = `${hours} heures${
-        minutes > 0
+      const duree = `${hours} heures${minutes > 0
           ? minutes < 10
             ? ` et 0${minutes} minutes`
             : ` et ${minutes} minutes`
           : ''
-      }`
+        }`
 
       const ret = {
         id: event.id,
@@ -251,5 +248,3 @@ function getEventCourse (event) {
     }
   })
 }
-
-module.exports = CallApiService
