@@ -3,10 +3,6 @@ const googleAuth = require('./googleAuth.service')
 const APIError = require('../utils/APIError')
 const logger = require('../utils/logger')(__filename)
 
-exports.notAuthenticated = () => {
-  return { message: 'NOT_AUTHENTICATED' }
-}
-
 exports.getAllCourse = (calendarId) => {
   const calendar = googleAuth.getCalendar()
   const dateMin = startDate()
@@ -30,13 +26,14 @@ exports.getAllCourse = (calendarId) => {
               err
             )
           )
+        } else {
+          const events = res.data.items
+          const all = new Array(0)
+          await events.map(async (event, i) => {
+            all.push(await getEventCourse(event))
+          })
+          resolve({ all })
         }
-        const events = res.data.items
-        const all = new Array(0)
-        await events.map(async (event, i) => {
-          all.push(await getEventCourse(event))
-        })
-        resolve({ all })
       }
     )
   })
@@ -75,22 +72,23 @@ exports.getWeekCourses = (calendarId, nextWeek) => {
               err
             )
           )
-        }
-        const events = res.data.items
-        if (events.length < 1) {
-          const ret =
-            'No data for ' +
-            dateMin.toISOString() +
-            ' to ' +
-            dateMax.toISOString()
-          resolve({ day: ret })
-        }
+        } else {
+          const events = res.data.items
+          if (events.length < 1) {
+            const ret =
+              'No data for ' +
+              dateMin.toISOString() +
+              ' to ' +
+              dateMax.toISOString()
+            resolve({ day: ret })
+          }
 
-        const week = new Array(0)
-        await events.map(async (event, i) => {
-          week.push(await getEventCourse(event))
-        })
-        resolve({ week: week })
+          const week = new Array(0)
+          await events.map(async (event, i) => {
+            week.push(await getEventCourse(event))
+          })
+          resolve({ week: week })
+        }
       }
     )
   })
@@ -129,17 +127,18 @@ exports.getDayCourses = (calendarId, nextDay) => {
               err
             )
           )
+        } else {
+          const events = res.data.items
+          if (events.length < 1) {
+            const ret = 'No data for ' + dateMin.toISOString()
+            resolve({ day: ret })
+          }
+          const day = new Array(0)
+          await events.map(async (event, i) => {
+            day.push(await getEventCourse(event))
+          })
+          resolve({ day })
         }
-        const events = res.data.items
-        if (events.length < 1) {
-          const ret = 'No data for ' + dateMin.toISOString()
-          resolve({ day: ret })
-        }
-        const day = new Array(0)
-        await events.map(async (event, i) => {
-          day.push(await getEventCourse(event))
-        })
-        resolve({ day })
       }
     )
   })

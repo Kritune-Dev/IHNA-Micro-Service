@@ -71,4 +71,43 @@ describe('Integreation test for Calendar Service controllers : ' + endpointUrl, 
       expect(response.body.title).toBeDefined()
     })
   })
+
+  describe('Testing all possible error', () => {
+    it('Should GET' + endpointUrl + '/:calendarId with bad id return an error', async () => {
+      const badCalendarId = 'error@group.calendar.google.com'
+      const response = await supertest(app)
+        .get(endpointUrl + '/' + badCalendarId)
+
+      expect(response.statusCode).toBe(500)
+      expect(response.body.message).toBe('An error occured fetching all course in calendar ' + badCalendarId + ', err:Error: Not Found')
+    })
+
+    it('Should GET' + endpointUrl + '/:calendarId/day with bad id return an error', async () => {
+      const badCalendarId = 'error@group.calendar.google.com'
+      const response = await supertest(app)
+        .get(endpointUrl + '/' + badCalendarId + '/day')
+
+      expect(response.statusCode).toBe(500)
+      expect(response.body.message).toBe('An error occured fetching all course of the day in calendar ' + badCalendarId + ', err:Error: Not Found')
+    })
+
+    it('Should GET' + endpointUrl + '/:calendarId/week with bad id return an error', async () => {
+      const badCalendarId = 'error@group.calendar.google.com'
+      const response = await supertest(app)
+        .get(endpointUrl + '/' + badCalendarId + '/week')
+
+      expect(response.statusCode).toBe(500)
+      expect(response.body.message).toBe('An error occured fetching all course of the week in calendar ' + badCalendarId + ', err:Error: Not Found')
+    })
+
+    it('Should GET' + endpointUrl + '/:calendarId/:eventId with bad id return an error', async () => {
+      const badCalendarId = 'error@group.calendar.google.com'
+      const eventId = 'bsqcule38kiuu71nohou0'
+      const response = await supertest(app)
+        .get(endpointUrl + '/' + badCalendarId + '/' + eventId)
+
+      expect(response.statusCode).toBe(404)
+      expect(response.body.message).toBe(`An error occured fetching course (${eventId}) in calendar ${badCalendarId}`)
+    })
+  })
 })
