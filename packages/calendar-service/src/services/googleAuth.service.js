@@ -5,6 +5,8 @@ const { googleSecrets, token } = require('../constants')
 let auth
 
 exports.connect = () => {
+  console.log(googleSecrets)
+
   auth = new googleAuth.OAuth2Client(
     googleSecrets.client_id,
     googleSecrets.client_secret,
