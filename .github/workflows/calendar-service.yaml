@@ -32,3 +32,18 @@ jobs:
 
       - name: Test 🚨
         run: npm test
+
+       name: Deploy 🏠
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd ~/IHNA-Micro-service/
+            git pull
+            npm install
+            cd ~/packages/calendar-service/
+            npm install
+            npm start
+
