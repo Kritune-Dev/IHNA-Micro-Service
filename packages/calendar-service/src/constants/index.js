@@ -17,6 +17,9 @@ const getEnvironmentSpecificConstants = (env) => {
     case 'test': {
       return require('./constants.testing')
     }
+    case 'CI': {
+      return require('./constants.ci')
+    }
     default: {
       throw new Error(`no matching constants file found for env '${env}'`)
     }

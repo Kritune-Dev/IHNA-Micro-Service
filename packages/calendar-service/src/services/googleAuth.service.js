@@ -1,21 +1,16 @@
-const fs = require('fs')
 const googleAuth = require('google-auth-library')
-const path = require('path')
 const { google } = require('googleapis')
+const { googleSecrets, token } = require('../constants')
 
 let auth
 
 exports.connect = () => {
-  const googleSecrets = JSON.parse(
-    fs.readFileSync(path.resolve('./src/constants/credentials.json'))
-  ).installed
   auth = new googleAuth.OAuth2Client(
     googleSecrets.client_id,
     googleSecrets.client_secret,
     googleSecrets.redirect_uris[0]
   )
 
-  const token = fs.readFileSync(path.resolve('./src/constants/token.json'))
   auth.setCredentials(JSON.parse(token))
 
   return 'Authentification GoogleAPI done'

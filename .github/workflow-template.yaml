@@ -14,8 +14,10 @@ jobs:
       run:
         working-directory: ./packages/{{SERVICE}}
     env:
-      NODE_ENV: test
+      NODE_ENV: CI
       PORT: 3000
+      CREDENTIAL: ${{ secrets.CREDENTIAL }}
+      TOKEN: ${{ secrets.TOKEN }}
 
     steps:
       - name: Checkout 🛎️
