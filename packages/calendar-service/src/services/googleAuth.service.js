@@ -13,7 +13,7 @@ exports.connect = () => {
     googleSecrets.redirect_uris[0]
   )
 
-  auth.setCredentials(JSON.parse(token))
+  auth.setCredentials(token)
 
   return 'Authentification GoogleAPI done'
 }
