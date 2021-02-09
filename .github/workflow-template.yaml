@@ -15,6 +15,7 @@ jobs:
         working-directory: ./packages/{{SERVICE}}
     env:
       NODE_ENV: test
+      PORT: 3000
 
     steps:
       - name: Checkout 🛎️
