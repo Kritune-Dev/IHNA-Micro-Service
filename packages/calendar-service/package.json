@@ -10,8 +10,8 @@
     "lint": "eslint **/*.js --ignore-pattern internals/scripts",
     "lint:fix": "eslint **/*.js --ignore-pattern internals/scripts --fix",
     "prettier": "prettier --loglevel warn --write \"**/*.{t,j}s\"",
-    "test": "cross-env NODE_ENV=test jest --force-exit --detectOpenHandles",
-    "test:dev": "jest --detectOpenHandles --watchAll",
+    "test": "cross-env NODE_ENV=test jest --force-exit --detectOpenHandles --testTimeout=10000",
+    "test:dev": "jest --detectOpenHandles --watchAll --testTimeout=10000",
     "pack": "rm -rf pkg/*.tgz && npm pack && mkdir -p pkg && mv *.tgz pkg/",
     "build": "npm run update-ecosystem && npm run pack && npm run docker-build"
   },

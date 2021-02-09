@@ -1,12 +1,15 @@
 const httpStatus = require('http-status')
 const cors = require('cors')
 
+const { env } = require('../constants')
+
 const APIError = require('../utils/APIError')
 
 const options = {
   origin: (origin, callback) => {
     // In dev, allow these origins to access the API
     const whiteList = ['localhost', 'chrome-extension']
+    if (env === 'test') { whiteList.push(origin) } // For fix bug integration test
     // We are doing string matching here.
     // For advanced use-case, use regex
     const index = whiteList.findIndex((aWhiteListedOrigin) =>

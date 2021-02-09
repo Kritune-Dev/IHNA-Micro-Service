@@ -1,8 +1,8 @@
 const packageInformation = require('../../package.json')
 
 exports.packageParseInformation = (req) => {
-  const uptime = getUptime()
-  const revision = getGitCommit()
+  const uptime = this.getUptime()
+  const revision = this.getGitCommit()
   return {
     message: 'OK',
     timestamp: new Date().toISOString(),
@@ -35,13 +35,13 @@ String.prototype.toHHMMSS = function () {
   return time
 }
 
-function getUptime () {
+exports.getUptime = () => {
   const time = process.uptime()
   const uptime = (time + '').toHHMMSS()
   return uptime
 }
 
-function getGitCommit () {
+exports.getGitCommit = () => {
   const revision = require('child_process')
     .execSync('git rev-parse HEAD')
     .toString()
