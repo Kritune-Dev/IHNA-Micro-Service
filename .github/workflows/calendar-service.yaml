@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build (Lint / Test)
+    name: Build (Lint / Test) and Deploy
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -33,7 +33,7 @@ jobs:
       - name: Test 🚨
         run: npm test
 
-       name: Deploy 🏠
+      - name: Deploy 🏠
         uses: appleboy/ssh-action@v0.1.2
         with:
           host: ${{secrets.SSH_HOST}}
