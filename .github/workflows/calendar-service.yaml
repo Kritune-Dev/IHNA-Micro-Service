@@ -34,7 +34,7 @@ jobs:
         run: npm test
 
   deploy:
-    name: Deploy (Deploy / Bump Tag)
+    name: Deploy (Deploy)
     runs-on: ubuntu-latest
     needs: build
     defaults:
@@ -53,9 +53,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd ~/IHNA-Micro-service/
+            cd ~/IHNA-Micro-Service/
             git pull
             npm install
-            cd ~/packages/calendar-service/
+            cd ~/IHNA-Micro-Service/packages/calendar-service/
             npm install
             npm start
