@@ -34,9 +34,10 @@ Lerna + Docker + EsLint + Prettier
 
 > My project is setup with monorepo by JavaScript + Docker + Lerna + Eslinter + Prettier.
 
-The project has 1 package (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
+The project has 2 packages (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
 
-- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages//calendar-service)  -  ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/calendar-service-CI/CD/badge.svg)
+- [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages/calendar-service)  -  ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/calendar-service-CI/CD/badge.svg)
+- [Messenger-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages/messenger-service)  -  ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/messenger-service-CI/CD/badge.svg)
 
 _Note: Each package has its own eslint, tsconfig, preitter config._
 
@@ -54,14 +55,6 @@ To do
 
 That's it 🚀
 
-### Compile ts to js
-
-- Compile all packages
-
-```
-npm run build
-```
-
 ### Running Eslint
 
 - Running Eslint on all packages
@@ -71,33 +64,25 @@ npm run eslint
 ```
 
 ## Project Structure
-
-TO DO
-
 ```
-microservice_nodejs_template
-├── docker/
-│   ├── api_gateway/
-│   │   └── Dockerfile
-│   ├── backend/
-│   │   └── Dockerfile
+ihna-Micro-Service
 ├── packages/
-│   ├── api_gateway/
+│   ├── calendar-service/
 │   │   └── src/
+│   │   └── integration-test/
+│   │   └── mocks/
 │   │   ├── package.json
-│   │   ├── tsconfig.json
+│   │   ├── ecosystem.config.js
+│   │   ├── readme.md
 │   │
-│   ├── backend/
+│   ├── messenger-service/
 │   │   └── src/
-│   │   └── package.json
-│   │   ├── tsconfig.json
-│   │
-│   ├── base/
-│   │   └── src/
-│   │   └── package.json
-│   │   ├── tsconfig.json
+│   │   └── integration-test/
+│   │   └── mocks/
+│   │   ├── package.json
+│   │   ├── ecosystem.config.js
+│   │   ├── readme.md
 │
-├── docker-compose.yml
 ├── package.json
 ├── lerna.json
 ├── README.md
