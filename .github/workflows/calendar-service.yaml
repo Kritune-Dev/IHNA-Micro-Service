@@ -24,13 +24,12 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@master
-
+        
       - name: Install 🔧
         run: yarn install
 
       - name: Test 🚨
-        run: npm test
-        working-directory: ./packages/calendar-service
+        run: lerna run --scope calendar-service lerna:test
 
   deploy:
     name: Deploy (Deploy)

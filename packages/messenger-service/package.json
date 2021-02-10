@@ -12,8 +12,10 @@
     "lint": "eslint **/*.js --ignore-pattern internals/scripts",
     "lint:fix": "eslint **/*.js --ignore-pattern internals/scripts --fix",
     "prettier": "prettier --loglevel warn --write \"**/*.{t,j}s\"",
-    "test": "jest --force-exit --detectOpenHandles --testTimeout=10000 --verbose",
-    "test:dev": "jest --detectOpenHandles --watchAll --testTimeout=10000 --verbose",
+    "lerna:test": "jest --force-exit --detectOpenHandles --testTimeout=10000 --verbose",
+    "lerna:test:dev": "jest --detectOpenHandles --watchAll --testTimeout=10000 --verbose",
+    "test": "lerna run --scope messenger-service lerna:test",
+    "test:dev": "lerna run --scope messenger-service lerna:test:dev",
     "pack": "rm -rf pkg/*.tgz && npm pack && mkdir -p pkg && mv *.tgz pkg/",
     "build": "npm run update-ecosystem && npm run pack && npm run docker-build"
   },
