@@ -49,7 +49,6 @@ jobs:
           script: |
             cd ~/IHNA-Micro-Service/
             git pull
-            npm install
+            yarn install
             cd ~/IHNA-Micro-Service/packages/{{SERVICE}}/
-            npm install
             npm start
