@@ -8,11 +8,6 @@ const router = express.Router()
 // protected route
 router.route('/').get(controller.verifyWebhook)
 
-router
-  .route('/')
-  .post(
-    middleware.formatMessage,
-    controller.handleMessage
-  )
+router.route('/').post(middleware.formatMessage, controller.handleMessage)
 
 module.exports = router

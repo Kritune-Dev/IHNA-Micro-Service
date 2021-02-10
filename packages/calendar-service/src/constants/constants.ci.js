@@ -9,10 +9,7 @@ module.exports = {
     token_uri: 'https://oauth2.googleapis.com/token',
     auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
     client_secret: process.env.CLIENT_SECRET,
-    redirect_uris: [
-      process.env.REDIRECT_URI,
-      'http://localhost'
-    ]
+    redirect_uris: [process.env.REDIRECT_URI, 'http://localhost']
   },
   token: {
     access_token: process.env.ACCES_TOKEN,

@@ -3,10 +3,14 @@ const { botId } = require('../constants')
 
 exports.formatMessage = async (req, res, next) => {
   if (req.body.object === 'page') {
-    req.body.entry.forEach(entry => {
-      entry.messaging.forEach(event => {
+    req.body.entry.forEach((entry) => {
+      entry.messaging.forEach((event) => {
         if (event.message && event.message.text) {
-          if (event.sender.id !== botId) logger.verbose(`New message from ${event.sender.id} : ${event.message.text}`)
+          if (event.sender.id !== botId) {
+            logger.verbose(
+              `New message from ${event.sender.id} : ${event.message.text}`
+            )
+          }
           req.body = event
           next()
         } else {

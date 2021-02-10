@@ -12,7 +12,10 @@ exports.verifyWebhook = (req) => {
     } else {
       reject(
         new Error(
-          'An error occured when verify the token ' + token + ', err: Token not matching')
+          'An error occured when verify the token ' +
+            token +
+            ', err: Token not matching'
+        )
       )
     }
   })
@@ -23,16 +26,17 @@ exports.processMessage = (event) => {
   let message = ''
 
   switch (event.message.text.toLowerCase()) {
-    case 'ping' :
+    case 'ping':
       message = 'Pong 🏓'
       break
-    case 'getid' :
+    case 'getid':
       message = event.sender.id
       break
     default:
-      message = 'Les commandes disponibles sont : \n' +
-          ' - Ping\n' +
-          ' - GetId [Debug]\n'
+      message =
+        'Les commandes disponibles sont : \n' +
+        ' - Ping\n' +
+        ' - GetId [Debug]\n'
       break
   }
 

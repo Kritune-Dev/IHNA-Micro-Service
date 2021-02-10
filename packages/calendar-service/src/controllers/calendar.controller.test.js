@@ -39,11 +39,17 @@ describe('Calendar Controller', () => {
     })
 
     it('Should return name and version in response', async () => {
-      informationService.packageParseInformation.mockReturnValue({ name: 'ihna_calendarservice', version: '1.0.0' })
+      informationService.packageParseInformation.mockReturnValue({
+        name: 'ihna_calendarservice',
+        version: '1.0.0'
+      })
 
       await Controller.getStatus(req, res, next)
 
-      expect(res._getJSONData()).toStrictEqual({ name: 'ihna_calendarservice', version: '1.0.0' })
+      expect(res._getJSONData()).toStrictEqual({
+        name: 'ihna_calendarservice',
+        version: '1.0.0'
+      })
     })
   })
 

@@ -21,9 +21,9 @@ exports.getAllCourse = (calendarId) => {
           reject(
             new Error(
               'An error occured fetching all course in calendar ' +
-              calendarId +
-              ', err:' +
-              err
+                calendarId +
+                ', err:' +
+                err
             )
           )
         } else {
@@ -67,9 +67,9 @@ exports.getWeekCourses = (calendarId, nextWeek) => {
           reject(
             new Error(
               'An error occured fetching all course of the week in calendar ' +
-              calendarId +
-              ', err:' +
-              err
+                calendarId +
+                ', err:' +
+                err
             )
           )
         } else {
@@ -122,9 +122,9 @@ exports.getDayCourses = (calendarId, nextDay) => {
           reject(
             new Error(
               'An error occured fetching all course of the day in calendar ' +
-              calendarId +
-              ', err:' +
-              err
+                calendarId +
+                ', err:' +
+                err
             )
           )
         } else {
@@ -211,12 +211,13 @@ function getEventCourse (event) {
         60
       const minutes = minutesTotal % 60
       const hours = (minutesTotal - minutes) / 60
-      const duree = `${hours} heures${minutes > 0
+      const duree = `${hours} heures${
+        minutes > 0
           ? minutes < 10
             ? ` et 0${minutes} minutes`
             : ` et ${minutes} minutes`
           : ''
-        }`
+      }`
 
       const ret = {
         id: event.id,
