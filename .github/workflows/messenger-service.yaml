@@ -1,10 +1,10 @@
-name: '{{SERVICE}}-CI/CD'
+name: 'messenger-service-CI/CD'
 
 on:
   push:
     paths:
-      - 'packages/{{SERVICE}}/**'
-      - '.github/workflows/{{SERVICE}}.yaml'
+      - 'packages/messenger-service/**'
+      - '.github/workflows/messenger-service.yaml'
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./packages/{{SERVICE}}
+        working-directory: ./packages/messenger-service
     env:
       NODE_ENV: CI
       PORT: 3000
@@ -33,7 +33,7 @@ jobs:
     needs: build
     defaults:
       run:
-        working-directory: ./packages/{{SERVICE}}
+        working-directory: ./packages/messenger-service
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev')
 
     steps:
@@ -50,6 +50,6 @@ jobs:
             cd ~/IHNA-Micro-Service/
             git pull
             npm install
-            cd ~/IHNA-Micro-Service/packages/{{SERVICE}}/
+            cd ~/IHNA-Micro-Service/packages/messenger-service/
             npm install
             npm start

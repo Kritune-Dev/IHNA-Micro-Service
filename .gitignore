@@ -50,3 +50,5 @@ pkg
 .tgz
 yarn.lock
 
+packages/starter.rar
+packages/messenger-service/ngrok.exe
