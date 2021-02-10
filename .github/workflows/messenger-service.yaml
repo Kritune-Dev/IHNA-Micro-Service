@@ -10,9 +10,7 @@ jobs:
   build:
     name: Build (Lint / Test)
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./packages/messenger-service
+
     env:
       NODE_ENV: CI
       PORT: 3000
@@ -22,10 +20,11 @@ jobs:
         uses: actions/checkout@master
 
       - name: Install 🔧
-        run: npm install
+        run: yarn install
 
       - name: Test 🚨
         run: npm test
+        working-directory: ./packages/messenger-service
 
   deploy:
     name: Deploy (Deploy)
