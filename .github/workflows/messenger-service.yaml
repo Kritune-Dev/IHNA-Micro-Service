@@ -23,7 +23,7 @@ jobs:
         run: yarn install
 
       - name: Test 🚨
-        run: lerna run --scope messenger-service lerna:test
+        run: yarn lerna run --scope messenger-service lerna:test
 
   deploy:
     name: Deploy (Deploy)

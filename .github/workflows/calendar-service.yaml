@@ -29,7 +29,7 @@ jobs:
         run: yarn install
 
       - name: Test 🚨
-        run: lerna run --scope calendar-service lerna:test
+        run: yarn lerna run --scope calendar-service lerna:test
 
   deploy:
     name: Deploy (Deploy)
