@@ -1,6 +1,6 @@
 {
   "name": "messenger-service",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Allows to interact with the user through Facebook Messenger and the Facebook page \\\"IHNA - Idheo Helper\\\".",
   "main": "src/index.js",
   "author": "Kritune <kritune.ashune@gmail.com>",
