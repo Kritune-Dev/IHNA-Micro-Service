@@ -1,5 +1,6 @@
 const { verifyToken, facebookAccesToken } = require('../constants')
 const fetch = require('node-fetch')
+const calendarService = require('./calendar.service')
 
 exports.verifyWebhook = (req) => {
   return new Promise((resolve, reject) => {
@@ -21,7 +22,7 @@ exports.verifyWebhook = (req) => {
   })
 }
 
-exports.processMessage = (event) => {
+exports.processMessage = async (event) => {
   const userId = event.sender.id
   let message = ''
 
@@ -32,11 +33,19 @@ exports.processMessage = (event) => {
     case 'getid':
       message = event.sender.id
       break
+    case 'cours du jour':
+      message = await calendarService.getDayCourse('gs0hmj2mibs3i9op5sbm5kpqmk@group.calendar.google.com')
+      break
+    case 'cours de demain':
+      message = await calendarService.getDayCourse('gs0hmj2mibs3i9op5sbm5kpqmk@group.calendar.google.com', '1')
+      break
     default:
       message =
         'Les commandes disponibles sont : \n' +
         ' - Ping\n' +
-        ' - GetId [Debug]\n'
+        ' - GetId [Debug]\n' +
+        ' - Cours du jours (P3 - Gr1)\n' +
+        ' - Cours de demain (P3 - Gr1)\n'
       break
   }
 

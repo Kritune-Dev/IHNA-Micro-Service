@@ -12,14 +12,23 @@
     "lint": "eslint **/*.js --ignore-pattern internals/scripts",
     "lint:fix": "eslint **/*.js --ignore-pattern internals/scripts --fix",
     "prettier": "prettier --loglevel warn --write \"**/*.{t,j}s\"",
-    "lerna:test": "jest --force-exit --detectOpenHandles --testTimeout=10000 --verbose",
-    "lerna:test:dev": "jest --detectOpenHandles --watchAll --testTimeout=10000 --verbose",
-    "test": "lerna run --scope messenger-service lerna:test",
-    "test:dev": "lerna run --scope messenger-service lerna:test:dev",
+    "test": "jest --force-exit --detectOpenHandles --testTimeout=10000 --verbose",
+    "test:dev": "jest --detectOpenHandles --watchAll --testTimeout=10000 --verbose",
     "pack": "rm -rf pkg/*.tgz && npm pack && mkdir -p pkg && mv *.tgz pkg/",
     "build": "npm run update-ecosystem && npm run pack && npm run docker-build"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "lodash": "^4.17.20",
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "standard": "^16.0.3"
   }
 }

@@ -22,9 +22,6 @@ jobs:
       - name: Install 🔧
         run: yarn install
 
-      - name: Test 🚨
-        run: yarn lerna run --scope messenger-service lerna:test
-
   deploy:
     name: Deploy (Deploy)
     runs-on: ubuntu-latest
