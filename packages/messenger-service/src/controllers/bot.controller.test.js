@@ -31,14 +31,5 @@ describe('Service Controller', () => {
       expect(res.statusCode).toBe(200)
       expect(res._isEndCalled()).toBeTruthy()
     })
-
-    it('Should return challenge', async () => {
-      const challenge = 1234567890
-      messengerService.verifyWebhook.mockResolvedValue(challenge)
-
-      await Controller.verifyWebhook(req, res, next)
-
-      expect(res.statusCode).toStrictEqual(challenge)
-    })
   })
 })
