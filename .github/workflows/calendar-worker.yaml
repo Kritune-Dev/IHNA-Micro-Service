@@ -1,10 +1,10 @@
-name: 'calendar-service-CI/CD'
+name: 'calendar-worker-CI/CD'
 
 on:
   push:
     paths:
-      - 'packages/calendar-service/**'
-      - '.github/workflows/calendar-service.yaml'
+      - 'packages/calendar-worker/**'
+      - '.github/workflows/calendar-worker.yaml'
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
         run: yarn install
 
       - name: Test 🚨
-        run: yarn lerna run --scope calendar-service lerna:test
+        run: yarn lerna run --scope calendar-worker lerna:test
 
   deploy:
     name: Deploy (Deploy)
@@ -31,7 +31,7 @@ jobs:
     needs: build
     defaults:
       run:
-        working-directory: ./packages/calendar-service
+        working-directory: ./packages/calendar-worker
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev')
 
     steps:
@@ -48,5 +48,5 @@ jobs:
             cd ~/IHNA-Micro-Service/
             git pull
             yarn install
-            cd ~/IHNA-Micro-Service/packages/calendar-service/
+            cd ~/IHNA-Micro-Service/packages/calendar-worker/
             npm start

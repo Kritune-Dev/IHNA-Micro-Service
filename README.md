@@ -32,11 +32,12 @@ Lerna + Docker + EsLint + Prettier
 
 ## Introduction
 
-> My project is setup with monorepo by JavaScript + Docker + Lerna + Eslinter + Prettier.
+> My project is setup with monorepo by JavaScript + Lerna + Eslinter + Prettier.
 
-The project has 2 packages (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
+The project has 3 packages (inside [packages directory](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages))
 
 - [Calendar-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages/calendar-service)  -  ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/calendar-service-CI/CD/badge.svg)
+- [Calendar-Worker](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages/calendar-worker)  -  ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/calendar-worker-CI/CD/badge.svg)
 - [Messenger-Service](https://github.com/Kritune-Dev/IHNA-Micro-Service/tree/master/packages/messenger-service)  -  ![Build](https://github.com/Kritune-Dev/IHNA-Micro-Service/workflows/messenger-service-CI/CD/badge.svg)
 
 _Note: Each package has its own eslint, tsconfig, preitter config._
@@ -68,6 +69,14 @@ npm run eslint
 ihna-Micro-Service
 ├── packages/
 │   ├── calendar-service/
+│   │   └── src/
+│   │   └── integration-test/
+│   │   └── mocks/
+│   │   ├── package.json
+│   │   ├── ecosystem.config.js
+│   │   ├── readme.md
+│   │
+│   ├── calendar-worker/
 │   │   └── src/
 │   │   └── integration-test/
 │   │   └── mocks/
