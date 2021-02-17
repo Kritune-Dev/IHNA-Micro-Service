@@ -4,17 +4,20 @@ exports.downloadCalendar = (calendarId) => {
   const calendar = googleAuth.getCalendar()
 
   return new Promise((resolve, reject) => {
-    calendar.events.list({
-      calendarId: calendarId,
-      timeMin: (new Date().toISOString()),
-      singleEvents: true,
-      maxResults: 1000,
-      orderBy: 'startTime'
-    }).then(result => {
-      resolve(result.data.items)
-    }).catch(err => {
-      reject(err)
-    })
+    calendar.events
+      .list({
+        calendarId: calendarId,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        maxResults: 1000,
+        orderBy: 'startTime'
+      })
+      .then((result) => {
+        resolve(result.data.items)
+      })
+      .catch((err) => {
+        reject(err)
+      })
   })
 }
 
@@ -26,17 +29,20 @@ exports.downloadCalendar = (calendarId) => {
 exports.deleteEvent = (event, calendarId) => {
   const calendar = googleAuth.getCalendar()
 
-  return new Promise(resolve => {
-    calendar.events.delete({
-      calendarId: calendarId,
-      eventId: event.id
-    }, function (err) {
-      if (err) {
-        resolve('There was an error contacting the Calendar service: ' + err)
-        return
+  return new Promise((resolve) => {
+    calendar.events.delete(
+      {
+        calendarId: calendarId,
+        eventId: event.id
+      },
+      function (err) {
+        if (err) {
+          resolve('There was an error contacting the Calendar service: ' + err)
+          return
+        }
+        resolve('Event deleted')
       }
-      resolve('Event deleted')
-    })
+    )
   })
 }
 
@@ -48,7 +54,7 @@ exports.deleteEvent = (event, calendarId) => {
 exports.createEvent = (event, calendarId) => {
   const calendar = googleAuth.getCalendar()
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const newEvent = {
       summary: event.summary,
       location: event.location,
@@ -65,16 +71,18 @@ exports.createEvent = (event, calendarId) => {
       reminders: event.reminders
     }
 
-    calendar.events.insert({
-      calendarId: calendarId,
-      resource: newEvent
-    }, function (err) {
-      if (err) {
-        resolve('There was an error contacting the Calendar service: ' + err)
-        return
+    calendar.events.insert(
+      {
+        calendarId: calendarId,
+        resource: newEvent
+      },
+      function (err) {
+        if (err) {
+          resolve('There was an error contacting the Calendar service: ' + err)
+          return
+        }
+        resolve('Event created')
       }
-      resolve('Event created')
-    })
-  }
-  )
+    )
+  })
 }
