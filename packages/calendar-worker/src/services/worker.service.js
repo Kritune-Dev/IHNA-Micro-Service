@@ -2,13 +2,18 @@ const logger = require('../utils/logger')(__filename)
 const googleApiService = require('./googleApi.service')
 const { calendarId } = require('../constants')
 
+exports.Start = () => {
+  checkingEvent()
+  setInterval(checkingEvent, 300000) // = 5 minutes)
+}
+
 /**
  * Fonction principale de l'application
  * Permet de vérifier si les calendriers sont a jour entre eux
  */
-exports.checkingEvent = async () => {
+async function checkingEvent () {
   logger.info('Demarrage du traitement des calendriers')
-  logger.profile('Traitement calendrier')
+  logger.profile('Traitement calendrier \n')
 
   for (let i = 1; i <= 4; i++) {
     let groupeText = 'P' + i
@@ -40,7 +45,7 @@ exports.checkingEvent = async () => {
     logger.info(`[Terminé] --> ${nbrAdd} éléments ajoutés et ${nbrSuppr} supprimés\n`)
   }
 
-  logger.profile('Traitement calendrier')
+  logger.profile('Traitement calendrier \n')
 }
 
 /**

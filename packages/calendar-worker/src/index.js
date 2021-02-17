@@ -9,19 +9,18 @@ logger.info('Connecting to Google Api...')
 
 logger.info(googleAuth.connect())
 
-logger.info('Lunch Worker')
-
-workerService.checkingEvent()
-
 // listen to requests
 app.listen(port, (err) => {
   if (err) {
     return logger.error('server failed to start', err)
   }
   return logger.info(
-    `Server started : Calendar Worker - [Port : ${port} - Env : ${env}]`
+    `Server started : Calendar Worker - [Port : ${port} - Env : ${env}] \n`
   )
 })
+
+logger.info('Lunch Worker')
+workerService.Start()
 
 /**
  * Exports express
