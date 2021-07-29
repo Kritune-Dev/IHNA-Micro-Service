@@ -124,6 +124,7 @@ function CheckingBetweenCal (eventsPromo, eventsGroupe, name, calendarId) {
       found === undefined &&
       (item.description.includes(`Gr${name}`) ||
         item.description.includes(`GC${name}`) ||
+        item.description.includes(`GC-${name}`) ||
         item.description.includes('Promotion') ||
         item.description.match(regex) ||
         item.description.match(regexBis) ||
