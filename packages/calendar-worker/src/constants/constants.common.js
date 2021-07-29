@@ -29,6 +29,12 @@ module.exports = {
     'calendar-gr3-D1': 'a61qo8qvct42m2nvem02tb6gro@group.calendar.google.com',
     'calendar-gr4-D1': '039c4r89un09di2f7li468nh7o@group.calendar.google.com',
 
+    'calendar-all-D2': '9i12it26qlrbmo5gosl2722ps8@group.calendar.google.com',
+    'calendar-gr1-D2': 'jr5o2fi80nv1tjmdc6ertsn03k@group.calendar.google.com',
+    'calendar-gr2-D2': 't8ojh4qmvh056i0im66tnhgui0@group.calendar.google.com',
+    'calendar-gr3-D2': 'lormvqh53gtdeqqail94qlvq9g@group.calendar.google.com',
+    'calendar-gr4-D2': 'h1kvr9tjfdhtiju3ideu70nt0k@group.calendar.google.com',
+
     'calendar-tutorat': 'ph5p00rrahuk65i633852cs5kg@group.calendar.google.com'
   }
 }

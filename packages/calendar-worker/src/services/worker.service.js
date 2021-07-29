@@ -15,7 +15,7 @@ async function checkingEvent () {
   logger.info('Demarrage du traitement des calendriers')
   logger.profile('Traitement calendrier \n')
 
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 5; i++) {
     let groupeText = 'P' + i
     if (i === 4) {
       groupeText = 'D1'
