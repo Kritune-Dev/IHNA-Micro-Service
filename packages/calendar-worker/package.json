@@ -1,6 +1,6 @@
 {
   "name": "calendar-worker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Background task that synchronizes the agendas provided by the school and divides them into small group agendas.",
   "main": "src/index.js",
   "author": "Kritune <kritune.ashune@gmail.com>",
