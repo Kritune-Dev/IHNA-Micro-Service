@@ -16,7 +16,7 @@ async function checkingEvent () {
   logger.profile('Traitement calendrier \n')
 
   let noFce = true
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 6; i++) {
     let groupeText = 'P' + i
     if (i === 4) {
       groupeText = 'D1'
@@ -143,9 +143,8 @@ function CheckingBetweenCal (eventsPromo, eventsGroupe, name, calendarId, fce = 
       nbrAdd++
     }
     if (
-      found === undefined && fce === false &&
+      found === undefined && fce === false && !item.description.includes('FCE') &&
       (item.description.includes(`Gr${name}`) ||
-        !item.description.includes('FCE') ||
         item.description.includes(`GC${name}`) ||
         item.description.includes(`GC-${name}`) ||
         item.description.includes('Promotion') ||
