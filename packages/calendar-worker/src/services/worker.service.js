@@ -15,6 +15,7 @@ async function checkingEvent () {
   logger.info('Demarrage du traitement des calendriers')
   logger.profile('Traitement calendrier \n')
 
+  let noFce = true
   for (let i = 1; i <= 5; i++) {
     let groupeText = 'P' + i
     if (i === 4) {
@@ -22,6 +23,10 @@ async function checkingEvent () {
     }
     if (i === 5) {
       groupeText = 'D2'
+    }
+    if (i === 6) {
+      groupeText = 'D2NOFCE'
+      noFce = false
     }
 
     logger.info('---> ' + groupeText)
@@ -56,25 +61,29 @@ async function checkingEvent () {
       eventsPromo,
       eventsGR1,
       '1',
-      calendarId[`calendar-gr1-${groupeText}`]
+      calendarId[`calendar-gr1-${groupeText}`],
+      noFce
     )
     const gr2 = CheckingBetweenCal(
       eventsPromo,
       eventsGR2,
       '2',
-      calendarId[`calendar-gr2-${groupeText}`]
+      calendarId[`calendar-gr2-${groupeText}`],
+      noFce
     )
     const gr3 = CheckingBetweenCal(
       eventsPromo,
       eventsGR3,
       '3',
-      calendarId[`calendar-gr3-${groupeText}`]
+      calendarId[`calendar-gr3-${groupeText}`],
+      noFce
     )
     const gr4 = CheckingBetweenCal(
       eventsPromo,
       eventsGR4,
       '4',
-      calendarId[`calendar-gr4-${groupeText}`]
+      calendarId[`calendar-gr4-${groupeText}`],
+      noFce
     )
     const nbrAdd = gr1.nbrAdd + gr2.nbrAdd + gr3.nbrAdd + gr4.nbrAdd
     const nbrSuppr = gr1.nbrSuppr + gr2.nbrSuppr + gr3.nbrSuppr + gr4.nbrSuppr
@@ -93,7 +102,7 @@ async function checkingEvent () {
  * @param name Le nom du groupe.Traitement calendrier terminé en
  * @param calendarId L'id du calendrier.
  */
-function CheckingBetweenCal (eventsPromo, eventsGroupe, name, calendarId) {
+function CheckingBetweenCal (eventsPromo, eventsGroupe, name, calendarId, fce = true) {
   let nbrSuppr = 0
   eventsGroupe.forEach(function (item) {
     const found = eventsPromo.find(
@@ -121,8 +130,22 @@ function CheckingBetweenCal (eventsPromo, eventsGroupe, name, calendarId) {
         e.start.dateTime === item.start.dateTime
     )
     if (
-      found === undefined &&
+      found === undefined && fce === true &&
       (item.description.includes(`Gr${name}`) ||
+        item.description.includes(`GC${name}`) ||
+        item.description.includes(`GC-${name}`) ||
+        item.description.includes('Promotion') ||
+        item.description.match(regex) ||
+        item.description.match(regexBis) ||
+        item.organizer.displayName === 'Corpo - PAON - TON')
+    ) {
+      createCall(item, calendarId)
+      nbrAdd++
+    }
+    if (
+      found === undefined && fce === false &&
+      (item.description.includes(`Gr${name}`) ||
+        !item.description.includes('FCE') ||
         item.description.includes(`GC${name}`) ||
         item.description.includes(`GC-${name}`) ||
         item.description.includes('Promotion') ||

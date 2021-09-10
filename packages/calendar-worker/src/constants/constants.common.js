@@ -30,10 +30,16 @@ module.exports = {
     'calendar-gr4-D1': '039c4r89un09di2f7li468nh7o@group.calendar.google.com',
 
     'calendar-all-D2': '9i12it26qlrbmo5gosl2722ps8@group.calendar.google.com',
-    'calendar-gr1-D2': 'jr5o2fi80nv1tjmdc6ertsn03k@group.calendar.google.com',
+    'calendar-gr1-D2': '6gvc1laqup2u9pf30c7hbbdd08@group.calendar.google.com',
     'calendar-gr2-D2': 't8ojh4qmvh056i0im66tnhgui0@group.calendar.google.com',
     'calendar-gr3-D2': 'lormvqh53gtdeqqail94qlvq9g@group.calendar.google.com',
     'calendar-gr4-D2': 'h1kvr9tjfdhtiju3ideu70nt0k@group.calendar.google.com',
+
+    'calendar-all-D2NOFCE': '9i12it26qlrbmo5gosl2722ps8@group.calendar.google.com',
+    'calendar-gr1-D2NOFCE': 'f5umm5afd1o1m2gf4sscp8bse8@group.calendar.google.com',
+    'calendar-gr2-D2NOFCE': 'vstlqom9lli7ksehp90hrvnvic@group.calendar.google.com',
+    'calendar-gr3-D2NOFCE': 'sik9rr5v4mog9mr16p35n9ue8k@group.calendar.google.com',
+    'calendar-gr4-D2NOFCE': '6glli79knai1r385a8fvgno02s@group.calendar.google.com',
 
     'calendar-tutorat': 'ph5p00rrahuk65i633852cs5kg@group.calendar.google.com'
   }
